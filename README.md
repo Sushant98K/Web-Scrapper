@@ -23,7 +23,7 @@ A full-stack web scraping application built with React (Vite + Tailwind CSS) fro
 
 ```bash
 git clone `https://github.com/Sushant98K/Web-Scrapper.git`
-cd web-scraper-app
+cd web-scraper
 ```
 
 ### 2. Backend Setup
