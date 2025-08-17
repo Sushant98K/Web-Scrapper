@@ -77,7 +77,8 @@ Frontend will be available at: `http://localhost:5173`
 
 ## 📁 Project Structure
 
-\`\`\`
+``` bash
+
 web-scraper-app/
 ├── backend/                 # FastAPI backend
 │   ├── main.py             # Main application file
@@ -100,7 +101,8 @@ web-scraper-app/
 │   └── index.html        # HTML template
 ├── README.md              # This file
 ├── GOOGLE_OAUTH_SETUP.md  # OAuth setup guide
-\`\`\`
+
+```
 
 ## 🔐 Authentication Setup
 
