@@ -21,14 +21,14 @@ A full-stack web scraping application built with React (Vite + Tailwind CSS) fro
 
 ### 1. Clone the Repository
 
-\`\`\`bash
+```bash
 git clone `https://github.com/Sushant98K/Web-Scrapper.git`
 cd web-scraper-app
-\`\`\`
+```
 
 ### 2. Backend Setup
 
-\`\`\`bash
+```bash
 cd backend
 
 # Create virtual environment
@@ -52,13 +52,14 @@ cp .env.example .env
 
 # Start the server
 python run.py
-\`\`\`
+```
 
 Backend will be available at: `http://localhost:8000`
 
 ### 3. Frontend Setup
 
-\`\`\`bash
+
+``` bash
 cd frontend
 
 # Install dependencies
@@ -71,7 +72,7 @@ cp .env.example .env
 
 # Start development server
 npm run dev
-\`\`\`
+```
 
 Frontend will be available at: `http://localhost:5173`
 
