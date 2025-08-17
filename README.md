@@ -1,4 +1,4 @@
-# Web Scraper (Hacker News)
+# Web Scraper (News)
 
 A full-stack web scraping application built with React (Vite + Tailwind CSS) frontend and FastAPI backend. Features Google OAuth authentication, real-time data fetching, and a responsive dashboard for displaying scraped content.
 
@@ -13,8 +13,8 @@ A full-stack web scraping application built with React (Vite + Tailwind CSS) fro
 
 ## 📋 Prerequisites
 
-- **Node.js** (v18 or higher)
-- **Python** (v3.8 or higher)
+- **Node.js** (v21 or higher)
+- **Python** (v3.12 or higher)
 - **Google Cloud Account** (for OAuth setup)
 
 ## 🛠️ Quick Start
@@ -102,6 +102,8 @@ web-scraper-app/
 │   └── index.html        # HTML template
 ├── README.md              # This file
 ├── GOOGLE_OAUTH_SETUP.md  # OAuth setup guide
+├── PROJECT_SETUP.md  # Project setup guide
+├── TROUBLESHOOTING.md  # Troubleshooting guide
 
 ```
 
