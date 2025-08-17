@@ -1,0 +1,49 @@
+# === Global ignores ===
+.DS_Store
+Thumbs.db
+*.log
+*.sqlite3
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+*.swp
+
+# === Environment files ===
+.env
+frontend/.env
+backend/.env
+
+# === Node / React (frontend) ===
+frontend/node_modules/
+frontend/dist/
+frontend/.vite/
+frontend/.next/
+frontend/build/
+frontend/package-lock.json
+frontend/yarn.lock
+
+# === Python / FastAPI / Django (backend) ===
+backend/venv/
+backend/.venv/
+backend/env/
+backend/*.db
+backend/__pycache__/
+backend/migrations/__pycache__/
+backend/.pytest_cache/
+backend/.coverage
+backend/htmlcov/
+
+# === IDE & Editor ===
+.vscode/
+.idea/
+*.iml
+
+# === Coverage & Testing ===
+coverage/
+*.cover
+*.py[cod]
+
+# === Misc ===
+*.bak
+*.tmp
