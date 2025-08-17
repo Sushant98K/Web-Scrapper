@@ -17,7 +17,7 @@ const Header = ({ onMenuClick }) => {
           </button>
           <div className="flex items-center gap-3 truncate">
             <h1 className="text-xl font-serif font-bold text-foreground whitespace-nowrap truncate">
-              Web Scraper Dashboard
+              Web Scraper
             </h1>
           </div>
         </div>

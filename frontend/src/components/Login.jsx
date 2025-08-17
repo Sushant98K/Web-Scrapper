@@ -93,10 +93,10 @@ const Login = () => {
           {/* Header */}
           <div className="text-center mb-8">
             <h1 className="text-2xl font-serif font-bold text-foreground mb-2">
-              Web Scraper Dashboard
+              Web Scraper
             </h1>
             <p className="text-muted-foreground">
-              Sign in to access your scraping dashboard
+              Sign in to access your scraping app
             </p>
           </div>
 
