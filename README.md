@@ -145,7 +145,7 @@ This project is licensed under the MIT License.
 ## 🆘 Support
 
 If you encounter any issues:
-1. Check the troubleshooting section in `./TROUBLESHOOTING.md`
+1. Check the troubleshooting section in `TROUBLESHOOTING.md`
 2. Verify your environment variables
 3. Ensure all dependencies are installed
 4. Check the console for error messages
@@ -159,10 +159,18 @@ If you encounter any issues:
 
 ## Screenshots 📸
 
+### Login Page
+
 ![Login](./Meta/login.png)
+
+### Dashboard
 
 ![Dashboard](./Meta/dashboard.png)
 
+### Refreshing In realtime
+
 ![Refresh](./Meta/refresh.png)
+
+### After Refresh
 
 ![RealTime](./Meta/realtime.png)
