@@ -1,4 +1,4 @@
-# Web Scraper (News)
+# Web Scraper (News/Quotes)
 
 A full-stack web scraping application built with React (Vite + Tailwind CSS) frontend and FastAPI backend. Features Google OAuth authentication, real-time data fetching, and a responsive dashboard for displaying scraped content.
 
