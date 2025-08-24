@@ -41,6 +41,7 @@ const Login = () => {
             theme: "outline",
             text: "continue_with",
             shape: "rectangular",
+            // width: 400,
           }
         );
       }
@@ -106,7 +107,10 @@ const Login = () => {
 
           {/* Google Login Button */}
           <div className="mb-6">
-            <div id="google-signin-button" className="w-full"></div>
+            {/* <div id="google-signin-button" className="w-full"></div> */}
+            <div className="w-full flex justify-center">
+              <div id="google-signin-button" className="w-full max-w-xs"></div>
+            </div>
             {isLoading && (
               <div className="flex items-center justify-center mt-2 w-full h-12">
                 <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-primary"></div>
