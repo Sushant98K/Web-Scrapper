@@ -113,6 +113,81 @@ const Dashboard = () => {
         </div>
       </div>
 
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+        <div className="bg-card p-6 rounded-lg border border-border">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-sm font-medium text-muted-foreground">
+                Total Items
+              </p>
+              <p className="text-2xl font-bold text-foreground">
+                {scrapedData.length}
+              </p>
+            </div>
+            <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
+              <RefreshCw className="h-6 w-6 text-primary" />
+            </div>
+          </div>
+        </div>
+
+        <div className="bg-card p-6 rounded-lg border border-border">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-sm font-medium text-muted-foreground">
+                Status
+              </p>
+              <p className="text-2xl font-bold text-foreground">
+                {loading ? "Loading" : error ? "Error" : "Active"}
+              </p>
+            </div>
+            <div
+              className={`w-12 h-12 rounded-lg flex items-center justify-center ${
+                loading
+                  ? "bg-secondary/10"
+                  : error
+                  ? "bg-destructive/10"
+                  : "bg-accent/10"
+              }`}
+            >
+              <div
+                className={`w-3 h-3 rounded-full ${
+                  loading
+                    ? "bg-secondary animate-pulse"
+                    : error
+                    ? "bg-destructive"
+                    : "bg-accent"
+                }`}
+              />
+            </div>
+          </div>
+        </div>
+
+        <div className="bg-card p-6 rounded-lg border border-border">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-sm font-medium text-muted-foreground">
+                Source
+              </p>
+              <p className="text-2xl font-bold text-foreground capitalize">
+                {sourceType}
+              </p>
+            </div>
+            <a
+              href={
+                sourceType === "news"
+                  ? "https://news.ycombinator.com/"
+                  : "https://quotes.toscrape.com/"
+              }
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-12 h-12 bg-accent/10 rounded-lg flex items-center justify-center"
+            >
+              <ExternalLink className="h-6 w-6 text-accent" />
+            </a>
+          </div>
+        </div>
+      </div>
+
       {/* Error Message */}
       {error && (
         <div className="bg-destructive/10 border border-destructive/20 rounded-lg p-4 mb-6">
