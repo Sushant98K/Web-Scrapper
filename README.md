@@ -18,6 +18,10 @@ A full-stack web scraping application built with React (Vite + Tailwind CSS) fro
 - **Google Cloud Account** (for OAuth setup)
 
 ## 🛠️ Quick Start
+> ✅ **Live Deployment Available**:  
+> - Frontend: [https://devwebscrapper.netlify.app](https://devwebscrapper.netlify.app)  
+> - Backend API: [https://web-scrapper-ddsm.onrender.com](https://web-scrapper-ddsm.onrender.com)
+
 
 ### 1. Clone the Repository
 
@@ -54,7 +58,7 @@ cp .env.example .env
 python run.py
 ```
 
-Backend will be available at: `http://localhost:8000`
+Backend will be available at: `https://web-scrapper-ddsm.onrender.com`
 
 ### 3. Frontend Setup
 
@@ -74,7 +78,7 @@ cp .env.example .env
 npm run dev
 ```
 
-Frontend will be available at: `http://localhost:5173`
+Frontend will be available at: `https://devwebscrapper.netlify.app`
 
 ## 📁 Project Structure
 
@@ -152,10 +156,10 @@ If you encounter any issues:
 
 ## 🔗 Links
 
-- **Frontend**: http://localhost:5173
-- **Backend API**: http://localhost:8000
-- **API Docs**: http://localhost:8000/docs
-- **Interactive API**: http://localhost:8000/redoc
+- **Frontend**: https://devwebscrapper.netlify.app
+- **Backend API**: https://web-scrapper-ddsm.onrender.com
+- **API Docs**: https://web-scrapper-ddsm.onrender.com/docs
+- **Interactive API**: https://web-scrapper-ddsm.onrender.com/redoc
 
 ## Screenshots 📸
 
