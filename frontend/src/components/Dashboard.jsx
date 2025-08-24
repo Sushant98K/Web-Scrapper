@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { RefreshCw, Clock, ExternalLink, AlertCircle } from "lucide-react";
 import axios from "axios";
+import { useAuth } from "@/context/AuthContext"; // make sure path is correct
 
 const API_URL =
   import.meta.env.VITE_API_URL ||
@@ -8,6 +9,7 @@ const API_URL =
   "http://0.0.0.0:8000";
 
 const Dashboard = () => {
+  const { token, loading: authLoading } = useAuth(); // 🔑 get token + loading
   const [scrapedData, setScrapedData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -15,17 +17,22 @@ const Dashboard = () => {
   const [sourceType, setSourceType] = useState("news");
 
   const fetchData = async (type = sourceType) => {
+    if (!token) return; // 🚀 only fetch if token exists
+
     setLoading(true);
     setError(null);
 
     try {
-      const response = await axios.get(`${API_URL}/scrape/${type}`);
+      const response = await axios.get(`${API_URL}/scrape/${type}`, {
+        headers: {
+          Authorization: `Bearer ${token}`, // 🔑 attach token manually
+        },
+      });
+
       if (response.data.success) {
         setScrapedData(response.data.data);
         setLastUpdated(new Date().toLocaleString());
         setSourceType(type);
-
-        setError(null)
       } else {
         setError(response.data.message);
       }
@@ -40,12 +47,20 @@ const Dashboard = () => {
   };
 
   useEffect(() => {
-    fetchData("news");
-  }, []);
+    if (!authLoading && token) {
+      fetchData("news"); // 🚀 fetch only after auth is restored
+    }
+  }, [authLoading, token]);
 
-  const formatTimestamp = (timestamp) => {
-    return new Date(timestamp).toLocaleString();
-  };
+  const formatTimestamp = (timestamp) => new Date(timestamp).toLocaleString();
+
+  if (authLoading) {
+    return (
+      <div className="p-6">
+        <p className="text-muted-foreground">Restoring session...</p>
+      </div>
+    );
+  }
 
   return (
     <div className="p-6">
@@ -101,82 +116,6 @@ const Dashboard = () => {
         </div>
       </div>
 
-      {/* Stats Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-        <div className="bg-card p-6 rounded-lg border border-border">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-sm font-medium text-muted-foreground">
-                Total Items
-              </p>
-              <p className="text-2xl font-bold text-foreground">
-                {scrapedData.length}
-              </p>
-            </div>
-            <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
-              <RefreshCw className="h-6 w-6 text-primary" />
-            </div>
-          </div>
-        </div>
-
-        <div className="bg-card p-6 rounded-lg border border-border">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-sm font-medium text-muted-foreground">
-                Status
-              </p>
-              <p className="text-2xl font-bold text-foreground">
-                {loading ? "Loading" : error ? "Error" : "Active"}
-              </p>
-            </div>
-            <div
-              className={`w-12 h-12 rounded-lg flex items-center justify-center ${
-                loading
-                  ? "bg-secondary/10"
-                  : error
-                  ? "bg-destructive/10"
-                  : "bg-accent/10"
-              }`}
-            >
-              <div
-                className={`w-3 h-3 rounded-full ${
-                  loading
-                    ? "bg-secondary animate-pulse"
-                    : error
-                    ? "bg-destructive"
-                    : "bg-accent"
-                }`}
-              />
-            </div>
-          </div>
-        </div>
-
-        <div className="bg-card p-6 rounded-lg border border-border">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-sm font-medium text-muted-foreground">
-                Source
-              </p>
-              <p className="text-2xl font-bold text-foreground capitalize">
-                {sourceType}
-              </p>
-            </div>
-            <a
-              href={
-                sourceType === "news"
-                  ? "https://news.ycombinator.com/"
-                  : "https://quotes.toscrape.com/"
-              }
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-12 h-12 bg-accent/10 rounded-lg flex items-center justify-center"
-            >
-              <ExternalLink className="h-6 w-6 text-accent" />
-            </a>
-          </div>
-        </div>
-      </div>
-
       {/* Error Message */}
       {error && (
         <div className="bg-destructive/10 border border-destructive/20 rounded-lg p-4 mb-6">
@@ -190,19 +129,7 @@ const Dashboard = () => {
 
       {/* Loading State */}
       {loading && scrapedData.length === 0 && (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {[...Array(6)].map((_, index) => (
-            <div
-              key={index}
-              className="bg-card p-6 rounded-lg border border-border animate-pulse"
-            >
-              <div className="h-4 bg-muted rounded w-3/4 mb-3"></div>
-              <div className="h-3 bg-muted rounded w-full mb-2"></div>
-              <div className="h-3 bg-muted rounded w-2/3 mb-4"></div>
-              <div className="h-3 bg-muted rounded w-1/2"></div>
-            </div>
-          ))}
-        </div>
+        <p className="text-muted-foreground">Fetching data...</p>
       )}
 
       {/* Data Grid */}
