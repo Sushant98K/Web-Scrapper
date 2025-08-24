@@ -15,10 +15,12 @@ load_dotenv()
 # Initialize FastAPI app
 app = FastAPI(title="Web Scraper API", version="1.0.0")
 
+origins = [o.strip() for o in os.getenv("CORS_ORIGINS", "").split(",") if o.strip()]
+
 # Enable CORS (for local React frontend development)
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173", "http://localhost:3000"],  # Vite/React dev servers
+    allow_origins=origins or ["http://localhost:5173", "http://localhost:3000"],  # Vite/React dev servers
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
