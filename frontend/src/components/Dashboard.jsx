@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import { RefreshCw, Clock, ExternalLink, AlertCircle } from "lucide-react";
 import axios from "axios";
 
+const API_URL = import.meta.env.VITE_API_URL || "http://0.0.0.0:8000";
+
 const Dashboard = () => {
   const [scrapedData, setScrapedData] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -14,11 +16,13 @@ const Dashboard = () => {
     setError(null);
 
     try {
-      const response = await axios.get(`/api/scrape/${type}`);
+      const response = await axios.get(`${API_URL}/scrape/${type}`);
       if (response.data.success) {
         setScrapedData(response.data.data);
         setLastUpdated(new Date().toLocaleString());
         setSourceType(type);
+
+        setError(null)
       } else {
         setError(response.data.message);
       }
