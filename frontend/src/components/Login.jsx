@@ -16,7 +16,10 @@ const Login = () => {
 
   useEffect(() => {
     const loadGoogleScript = () => {
-      if (window.google) return;
+      if (window.google) {
+        initializeGoogleAuth();
+        return;
+      }
 
       const script = document.createElement("script");
       script.src = "https://accounts.google.com/gsi/client";
@@ -35,16 +38,19 @@ const Login = () => {
           cancel_on_tap_outside: true,
         });
 
-        window.google.accounts.id.renderButton(
-          document.getElementById("google-signin-button"),
-          {
+        const container = document.getElementById("google-signin-button");
+        if (container) {
+          // 👇 Force dynamic width based on container
+          const width = container.offsetWidth;
+
+          window.google.accounts.id.renderButton(container, {
             theme: "outline",
             size: "large",
-            width: "100%",
             text: "continue_with",
             shape: "rectangular",
-          }
-        );
+            width, // dynamically set width so it never shrinks
+          });
+        }
       }
     };
 
@@ -73,7 +79,7 @@ const Login = () => {
     setError("");
 
     setTimeout(() => {
-      setError("login disabled. Please use Google OAuth for authentication.");
+      setError("Login disabled. Please use Google OAuth for authentication.");
       setIsLoading(false);
     }, 1000);
   };
@@ -108,9 +114,12 @@ const Login = () => {
 
           {/* Google Login Button */}
           <div className="mb-6">
-            <div id="google-signin-button" className="w-full"></div>
+            <div
+              id="google-signin-button"
+              className="w-full flex justify-center"
+            ></div>
             {isLoading && (
-              <div className="flex items-center justify-center mt-2">
+              <div className="flex items-center justify-center mt-2 w-full h-12">
                 <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-primary"></div>
                 <span className="ml-2 text-sm text-muted-foreground">
                   Authenticating...
@@ -201,7 +210,7 @@ const Login = () => {
           <div className="text-center text-sm text-muted-foreground mt-6 space-y-2">
             <p>Forget Password ?</p>
             <p className="text-xs">
-              Don't have and account
+              Don't have an account
               <strong className="cursor-grab"> &nbsp; Signup</strong>
             </p>
           </div>
