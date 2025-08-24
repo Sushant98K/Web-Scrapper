@@ -4,9 +4,6 @@ import { useAuth } from "../context/AuthContext";
 
 const GOOGLE_CLIENT_ID = import.meta.env.VITE_GOOGLE_CLIENT_ID;
 
-const container = document.getElementById("google-signin-button");
-const width = container.offsetWidth;
-
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -42,9 +39,10 @@ const Login = () => {
           document.getElementById("google-signin-button"),
           {
             theme: "outline",
+            size: "large",
+            width: "100%",
             text: "continue_with",
             shape: "rectangular",
-            width: width,
           }
         );
       }
@@ -110,9 +108,9 @@ const Login = () => {
 
           {/* Google Login Button */}
           <div className="mb-6">
-            <div id="google-signin-button" className="w-full flex justify-center"></div>
+            <div id="google-signin-button" className="w-full"></div>
             {isLoading && (
-              <div className="flex items-center justify-center mt-2 w-full h-12">
+              <div className="flex items-center justify-center mt-2">
                 <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-primary"></div>
                 <span className="ml-2 text-sm text-muted-foreground">
                   Authenticating...
