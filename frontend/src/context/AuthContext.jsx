@@ -4,6 +4,8 @@ import { createContext, useContext, useState, useEffect } from "react";
 import axios from "axios";
 import { jwtDecode } from "jwt-decode";
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 const AuthContext = createContext();
 
 export const useAuth = () => {
@@ -77,9 +79,30 @@ export const AuthProvider = ({ children }) => {
     setLoading(false);
   }, []);
 
+  // const loginWithGoogle = async (googleToken) => {
+  //   try {
+  //     const response = await axios.post("/api/auth/google", {
+  //       token: googleToken,
+  //     });
+
+  //     if (response.data.success) {
+  //       const { token: jwtToken, user: userData } = response.data;
+  //       setToken(jwtToken);
+  //       setUser(userData);
+  //       localStorage.setItem("token", jwtToken);
+  //       return { success: true };
+  //     } else {
+  //       return { success: false, error: response.data.message };
+  //     }
+  //   } catch (error) {
+  //     console.error("Login error:", error);
+  //     return { success: false, error: "Authentication failed" };
+  //   }
+  // };
+
   const loginWithGoogle = async (googleToken) => {
     try {
-      const response = await axios.post("/api/auth/google", {
+      const response = await axios.post(`${API_URL}/auth/google`, {
         token: googleToken,
       });
 
