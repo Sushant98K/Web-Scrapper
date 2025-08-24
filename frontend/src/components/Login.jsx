@@ -4,6 +4,7 @@ import { useAuth } from "../context/AuthContext";
 
 const GOOGLE_CLIENT_ID = import.meta.env.VITE_GOOGLE_CLIENT_ID;
 
+const container = document.getElementById("google-signin-button");
 const width = container.offsetWidth;
 
 const Login = () => {
