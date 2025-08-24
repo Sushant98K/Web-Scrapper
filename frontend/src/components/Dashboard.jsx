@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { RefreshCw, Clock, ExternalLink, AlertCircle } from "lucide-react";
 import axios from "axios";
-import { useAuth } from "@/context/AuthContext"; // make sure path is correct
+import { useAuth } from "../context/AuthContext"; // make sure path is correct
 
 const API_URL = import.meta.env.VITE_API_URL || "http://0.0.0.0:8000";
 
